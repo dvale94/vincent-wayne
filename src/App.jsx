@@ -11,9 +11,16 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Layout2 from './components/Layout/Layout2';
 
+import { sanityClient } from './sanityClient';
+
 function App() {
   useEffect(() => {
     Aos.init({ once: true });
+
+    sanityClient
+      .fetch(`*[_type == "post"]{title}`)
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   }, []);
 
   return (
