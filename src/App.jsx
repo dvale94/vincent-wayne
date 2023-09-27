@@ -11,23 +11,20 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Layout2 from './components/Layout/Layout2';
 
-import { sanityClient } from './sanityClient';
+import { useSanityData } from './useSanityData.hook';
 
 function App() {
+  const data = useSanityData();
+
   useEffect(() => {
     Aos.init({ once: true });
-
-    sanityClient
-      .fetch(`*[_type == "post"]{title}`)
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
   }, []);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Home data={data}/>} />
           <Route path="home-v3" element={<Home3 />} />
           <Route path="home-v4" element={<Home4 />} />
           <Route path="*" element={<Page404 />} />
