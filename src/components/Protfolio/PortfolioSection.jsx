@@ -10,9 +10,9 @@ const PortfolioSection = ({ data }) => {
   const [modal, setModal] = useState(false);
   const [tempData, setTempData] = useState([]);
 
-  const getData = (imgLink, title, subTitle) => {
-    let tempData = [imgLink, title, subTitle];
-    setTempData(item => [1, ...tempData]);
+  const getData = (source, link, title, subTitle) => {
+    let tempData = [source, link , title, subTitle];
+    setTempData(item => [...tempData]);
     setModal(true);
   }
 
@@ -50,7 +50,7 @@ const PortfolioSection = ({ data }) => {
         <div className="container">
           <div className="row">
             {visibleItems.map((element, index) => (
-              (element.imgLink && <SinglePortfolio data={element} key={index} getData={getData} index={index}/>)
+              <SinglePortfolio data={element} key={index} getData={getData} index={index}/>
             ))}
             <div className="col-lg-12 text-center">
               <div className="st-portfolio-btn">
@@ -68,7 +68,7 @@ const PortfolioSection = ({ data }) => {
         </div>
         <div className="st-height-b100 st-height-lg-b80"></div>
       </section>
-      {modal === true ? <Modal img={tempData[1]} title={tempData[2]} subTitle={tempData[3]} modalClose={modalClose} /> : ""}
+      {modal === true ? <Modal source={tempData[0]} link={tempData[1]} title={tempData[2]} subTitle={tempData[3]} modalClose={modalClose} /> : ""}
     </>
   );
 };

@@ -1,6 +1,7 @@
 import './Modal.scss';
+import { YoutubeEmbed } from '../YoutubeEmbed/YoutubeEmbed';
 
-const Modal = ({ img, title, subTitle, modalClose }) => {
+const Modal = ({ source, link, title, subTitle, modalClose }) => {
   const modalStyle = {
     backgroundColor: 'rgba(0,0,0,0.8)',
     display: 'block',
@@ -19,7 +20,12 @@ const Modal = ({ img, title, subTitle, modalClose }) => {
           </div>
           <div className="modal-body">
             <div className="st-flex-center">
-              <img src={img} />
+              {source === 'image' ? (
+                <img src={link} />
+              ) : (
+                <YoutubeEmbed embedId={link}/>
+              )
+              }
             </div>
             <p className="modal-subtitle">{subTitle}</p>
           </div>
