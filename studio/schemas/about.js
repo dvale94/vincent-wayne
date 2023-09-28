@@ -1,80 +1,54 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'hero',
-  title: 'Hero',
+  name: 'about',
+  title: 'About',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'subTitle',
+      name: 'subtitle',
       title: 'SubTitle',
       type: 'string',
     }),
     defineField({
-      name: 'designation',
-      title: 'Designation',
+      name: 'text',
+      title: 'About Me Text',
       type: 'string',
     }),
     defineField({
       name: 'imgLink',
-      title: 'Image',
+      title: 'Image (570x514)',
       type: 'image',
       options: {
         hotspot: true
       }
     }),
     defineField({
-      name: 'bgImgLink',
-      title: 'Background Image',
-      type: 'image',
+      name: 'cvPdf',
+      title: 'Resume PDF File',
+      type: 'file',
       options: {
-        hotspot: true
+        accept: 'application/pdf',
       }
     }),
-    // defineField({
-    //   name: 'slug',
-    //   title: 'Slug',
-    //   type: 'slug',
-    //   options: {
-    //     source: 'title',
-    //     maxLength: 96,
-    //   },
-    // }),
-    // defineField({
-    //   name: 'author',
-    //   title: 'Author',
-    //   type: 'reference',
-    //   to: {type: 'author'},
-    // }),
-    // defineField({
-    //   name: 'mainImage',
-    //   title: 'Main image',
-    //   type: 'image',
-    //   options: {
-    //     hotspot: true,
-    //   },
-    // }),
-    // defineField({
-    //   name: 'categories',
-    //   title: 'Categories',
-    //   type: 'array',
-    //   of: [{type: 'reference', to: {type: 'category'}}],
-    // }),
-    // defineField({
-    //   name: 'publishedAt',
-    //   title: 'Published at',
-    //   type: 'datetime',
-    // }),
-    // defineField({
-    //   name: 'body',
-    //   title: 'Body',
-    //   type: 'blockContent',
-    // }),
+    defineField({
+      name: 'details',
+      title: 'Details',
+      type: 'array',
+      of: [
+        {
+          type: "object",
+          fields: [
+            { type: "string", name: "title" },
+            { type: "string", name: "info" }
+          ]
+        }
+      ]
+    })
   ]
 });

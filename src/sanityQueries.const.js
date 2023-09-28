@@ -1,6 +1,6 @@
 const heroData = `
   'heroData': 
-    *[_type == "hero"][0]
+    *[_type == 'hero'][0]
       {
         title,
         subTitle,
@@ -10,8 +10,47 @@ const heroData = `
       }
 `;
 
+const aboutData = `
+  'aboutData':
+    *[_type == 'about'][0]
+      {
+        'imgLink': imgLink.asset -> url,
+        'cvPdf': cvPdf.asset -> url,
+        title,
+        subtitle,
+        text,
+        details
+      }
+`;
+
+const servicesData = `
+  'servicesData':
+    *[_type == 'services']
+      {
+        'imgLink': imgLink.asset -> url,
+        title,
+        text
+      }
+`;
+
+const portfolioData = `
+  'portfolioData':
+    *[_type == 'portfolioItems']
+      {
+        source,
+        title,
+        subTitle,
+        'imgLink': imgLink.asset -> url,
+        'imgLinkLg': imgLinkLg.asset -> url,
+        videoId
+  }
+`;
+
 export const sanityQueries = `
   {
-    ${heroData}
+    ${heroData},
+    ${aboutData},
+    ${servicesData},
+    ${portfolioData},
   }
 `;

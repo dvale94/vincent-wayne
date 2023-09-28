@@ -23,7 +23,7 @@ export default defineType({
     }),
     defineField({
       name: 'imgLink',
-      title: 'Image',
+      title: 'Image (850x850)',
       type: 'image',
       options: {
         hotspot: true

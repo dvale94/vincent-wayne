@@ -1,15 +1,11 @@
-import blockContent from './blockContent';
-import category from './category';
-import post from './post';
-import author from './author';
 import hero from './hero';
 import about from './about';
+import services from './services';
+import portfolioItems from './portfolioItems';
 
 export const schemaTypes = [
-  post,
-  author,
-  category,
-  blockContent,
   hero,
   about,
+  services,
+  portfolioItems,
 ];

@@ -22,23 +22,22 @@ const PortfolioSection = ({ data }) => {
 
 
   // Load Items
-  const { portfolioItems } = data;
   const itemsPerPage = 6;
   const [visibleItems, setVisibleItems] = useState(
-    portfolioItems.slice(0, itemsPerPage),
+    data.slice(0, itemsPerPage),
   );
 
   const [showLoadMore, setShowLoadMore] = useState(true);
 
   const loadMoreItems = () => {
     const currentLength = visibleItems.length;
-    const nextChunk = portfolioItems.slice(
+    const nextChunk = data.slice(
       currentLength,
       currentLength + itemsPerPage,
     );
     setVisibleItems(prevItems => [...prevItems, ...nextChunk]);
 
-    if (currentLength + itemsPerPage >= portfolioItems.length) {
+    if (currentLength + itemsPerPage >= data.length) {
       setShowLoadMore(false);
     }
   };
@@ -51,7 +50,7 @@ const PortfolioSection = ({ data }) => {
         <div className="container">
           <div className="row">
             {visibleItems.map((element, index) => (
-              <SinglePortfolio data={element} key={index} getData={getData} />
+              (element.imgLink && <SinglePortfolio data={element} key={index} getData={getData} index={index}/>)
             ))}
             <div className="col-lg-12 text-center">
               <div className="st-portfolio-btn">
@@ -75,7 +74,7 @@ const PortfolioSection = ({ data }) => {
 };
 
 PortfolioSection.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 export default PortfolioSection;
