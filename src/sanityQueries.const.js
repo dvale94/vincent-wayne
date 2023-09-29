@@ -42,7 +42,7 @@ const portfolioDataQuery = `
         subTitle,
         'imgLink': imgLink.asset -> url,
         'imgLinkLg': imgLinkLg.asset -> url,
-        videoId
+        contentId
       }
 `;
 

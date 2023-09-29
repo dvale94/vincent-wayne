@@ -1,5 +1,6 @@
 import './Modal.scss';
 import { YoutubeEmbed } from '../YoutubeEmbed/YoutubeEmbed';
+import { InstagramEmbed } from '../InstagramEmbed/InstagramEmbed';
 
 const Modal = ({ source, link, title, subTitle, modalClose }) => {
   const modalStyle = {
@@ -23,7 +24,11 @@ const Modal = ({ source, link, title, subTitle, modalClose }) => {
               {source === 'image' ? (
                 <img src={link} />
               ) : (
-                <YoutubeEmbed embedId={link}/>
+                source === 'youtube' ? (
+                  <YoutubeEmbed embedId={link} />
+                ) : (
+                  <InstagramEmbed embedId={link} />
+                )
               )
               }
             </div>

@@ -1,0 +1,11 @@
+@import "../../sass/default/variable";
+.post-responsive {
+  aspect-ratio: 9 / 16;
+  width: 100%;
+  margin-bottom: 20px;
+};
+
+.post-responsive iframe {
+  height: 100%;
+  width: 100%;
+};

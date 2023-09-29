@@ -12,7 +12,8 @@ export default defineType({
       options: {
         list: [
           {title: 'Image', value: 'image'},
-          {title: 'YouTube', value: 'youtube'}
+          {title: 'YouTube', value: 'youtube'},
+          {title: 'Instagram', value: 'instagram'}
         ],
         layout: 'radio',
       },
@@ -35,7 +36,7 @@ export default defineType({
       options: {
         hotspot: true
       },
-      hidden: ({ document }) => document?.source !== 'image'
+      hidden: ({ document }) => document?.source !== 'image' && document?.source !== 'instagram'
     }),
     defineField({
       name: 'imgLinkLg',
@@ -47,10 +48,10 @@ export default defineType({
       hidden: ({ document }) => document?.source !== 'image'
     }),
     defineField({
-      name: 'videoId',
-      title: 'Youtube Video ID',
+      name: 'contentId',
+      title: 'Content ID from source',
       type: 'string',
-      hidden: ({ document }) => document?.source !== 'youtube'
+      hidden: ({ document }) => document?.source !== 'youtube' && document?.source !== 'instagram'
     }),
   ]
 });
