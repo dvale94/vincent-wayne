@@ -3,7 +3,7 @@ import { sanityClient } from './sanityClient';
 import { sanityQueries } from './sanityQueries.const';
 
 export function useSanityData () {
-  const [ sanityData, setSanityData ] = useState({});
+  const [ sanityData, setSanityData ] = useState();
 
   useEffect(() => {
     sanityClient

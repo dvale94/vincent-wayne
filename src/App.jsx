@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
 import Home2 from './pages/Home2';
@@ -14,16 +14,21 @@ import Layout2 from './components/Layout/Layout2';
 import { useSanityData } from './useSanityData.hook';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const data = useSanityData();
 
   useEffect(() => {
     Aos.init({ once: true });
   }, []);
 
+  useEffect(() => {
+    if (data) setIsLoading(false);
+  }, [data]);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout isLoading={isLoading} phoneNumber={data?.contactData?.phone}/>}>
           <Route index element={<Home data={data}/>} />
           <Route path="home-v3" element={<Home3 />} />
           <Route path="home-v4" element={<Home4 />} />

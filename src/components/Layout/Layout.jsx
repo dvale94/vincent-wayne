@@ -6,22 +6,14 @@ import Preloader from '../Preloader/Preloader';
 // import CustomCursor from '../CustomCursor/CustomCursor';
 
 
-const Layout = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
-
+const Layout = ({ isLoading, phoneNumber }) => {
+ 
   return (
     <>
       {isLoading ? <Preloader /> : (
         <div>
           {/* <CustomCursor /> */}
-          <Header />
+          <Header phoneNumber={phoneNumber}/>
           <Outlet />
           <Footer />
         </div>
