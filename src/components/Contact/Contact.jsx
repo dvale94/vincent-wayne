@@ -1,3 +1,5 @@
+import { useCallback, useMemo, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Contact.scss';
@@ -7,6 +9,43 @@ import SocialLinks from '../SocialLinks/SocialLinks';
 
 const Contact = ({ data, socialData }) => {
   const { title, text, subTitle, phone, email } = data;
+  const [isSendingMail, setIsSendingMail] = useState(false);
+  const [isMailSent, setIsMailSent] = useState(false);
+
+  const defaultFormData = useMemo(
+    () => ({
+      name: '',
+      email: '',
+      subject: '',
+      msg: '',
+    }),
+    [],
+  );
+
+  const [formData, setFormData] = useState(defaultFormData);
+
+  const handleSendMessage = useCallback(async (event) => {
+    event.preventDefault();
+    setIsSendingMail(true);
+
+    const result = await emailjs.sendForm(
+      import.meta.env.VITE_EMAIL_SERVICE,
+      import.meta.env.VITE_EMAIL_TEMPLATE,
+      event.currentTarget,
+      import.meta.env.VITE_EMAIL_USER,
+    );
+
+    result.status == 200 ? setIsMailSent(true) : console.log(result.text);
+
+    setIsSendingMail(false);
+  }, []);
+
+  const onChange = useCallback((event) => {
+    const {name, value} = event.target;
+    const fieldData = {[name]: value};
+    setFormData({...formData, ...fieldData});
+  }, [formData]);
+
   return (
     <section id="contact" className="st-dark-bg">
       <div className="st-height-b100 st-height-lg-b80"></div>
@@ -16,20 +55,22 @@ const Contact = ({ data, socialData }) => {
           <div className="col-lg-6">
             <h3 className="st-contact-title">Just say Hello</h3>
             <div id="st-alert"></div>
-            <form action="#" method="POST" className="st-contact-form" id="contact-form">
+            <form method="POST" className="st-contact-form" id="contact-form" onSubmit={handleSendMessage}>
               <div className="st-form-field">
-                <input type="text" id="name" name="name" placeholder="Your Name" required />
+                <input type="text" id="name" name="name" placeholder="Your Name" required onChange={onChange}/>
               </div>
               <div className="st-form-field">
-                <input type="text" id="email" name="email" placeholder="Your Email" required />
+                <input type="email" id="email" name="email" placeholder="Your Email" required onChange={onChange}/>
               </div>
               <div className="st-form-field">
-                <input type="text" id="subject" name="subject" placeholder="Your Subject" required />
+                <input type="text" id="subject" name="subject" placeholder="Your Subject" required onChange={onChange}/>
               </div>
               <div className="st-form-field">
-                <textarea cols="30" rows="10" id="msg" name="msg" placeholder="Your Message" required></textarea>
+                <textarea cols="30" rows="10" id="msg" name="msg" placeholder="Your Message" required onChange={onChange}></textarea>
               </div>
-              <button className='st-btn st-style1 st-color1' type="submit" id="submit" name="submit">Send Message</button>
+              <button className='st-btn st-style1 st-color1' type="submit" id="submit" name="submit" disabled={isSendingMail || isMailSent}>
+                {isMailSent ? 'Sent' : isSendingMail ? 'Sending...' : 'Send Message'}
+              </button>
             </form>
             <div className="st-height-b0 st-height-lg-b30"></div>
           </div>
