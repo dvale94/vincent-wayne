@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 import SocialLinks from '../SocialLinks/SocialLinks';
 
 const Contact = ({ data, socialData }) => {
-  const { title, text, subTitle } = data;
+  const { title, text, subTitle, phone, email } = data;
   return (
     <section id="contact" className="st-dark-bg">
       <div className="st-height-b100 st-height-lg-b80"></div>
@@ -44,8 +44,7 @@ const Contact = ({ data, socialData }) => {
                 </div>
                 <div className="st-single-info-details">
                   <h4>Email</h4>
-                  <Link to="#">devis@example.com</Link>
-                  <Link to="#">info@support.com</Link>
+                  <Link to="#">{email}</Link>
                 </div>
               </div>
               <div className="st-single-contact-info">
@@ -54,11 +53,10 @@ const Contact = ({ data, socialData }) => {
                 </div>
                 <div className="st-single-info-details">
                   <h4>Phone</h4>
-                  <span>+1 876-369-9009</span>
-                  <span>+1 213-519-1786</span>
+                  <span>{phone}</span>
                 </div>
               </div>
-              <div className="st-single-contact-info">
+              {/* <div className="st-single-contact-info">
                 <div className="st-icon-wrap">
                   <Icon icon="mdi:location" />
                 </div>
@@ -66,7 +64,7 @@ const Contact = ({ data, socialData }) => {
                   <h4>Address</h4>
                   <span>2661 High Meadow Lane Bear Creek, <br />Olancha, KY 93544</span>
                 </div>
-              </div>
+              </div> */}
               <div className="st-social-info">
                 <div className="st-social-text">{subTitle}</div>
                 <SocialLinks data={socialData} />

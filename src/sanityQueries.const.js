@@ -1,4 +1,4 @@
-const heroData = `
+const heroDataQuery = `
   'heroData': 
     *[_type == 'hero'][0]
       {
@@ -10,7 +10,7 @@ const heroData = `
       }
 `;
 
-const aboutData = `
+const aboutDataQuery = `
   'aboutData':
     *[_type == 'about'][0]
       {
@@ -23,7 +23,7 @@ const aboutData = `
       }
 `;
 
-const servicesData = `
+const servicesDataQuery = `
   'servicesData':
     *[_type == 'services']
       {
@@ -33,7 +33,7 @@ const servicesData = `
       }
 `;
 
-const portfolioData = `
+const portfolioDataQuery = `
   'portfolioData':
     *[_type == 'portfolioItems']
       {
@@ -43,14 +43,48 @@ const portfolioData = `
         'imgLink': imgLink.asset -> url,
         'imgLinkLg': imgLinkLg.asset -> url,
         videoId
-  }
+      }
+`;
+
+const reviewDataQuery = `
+  'reviewData':
+    *[_type == 'reviews']
+      {
+        title,
+        designation,
+        text,
+        'imgLink': imgLink.asset -> url,
+      }
+`;
+
+const contactDataQuery = `
+  'contactData':
+    *[_type == 'contact'][0]
+      {
+        formTitle,
+        title,
+        subTitle,
+        text,
+        email,
+        phone
+      }
+  ,
+  'socialData':
+    *[_type == 'contact'][0].socialData[]
+      {
+        title,
+        icon,
+        link
+      }
 `;
 
 export const sanityQueries = `
   {
-    ${heroData},
-    ${aboutData},
-    ${servicesData},
-    ${portfolioData},
+    ${heroDataQuery},
+    ${aboutDataQuery},
+    ${servicesDataQuery},
+    ${portfolioDataQuery},
+    ${reviewDataQuery},
+    ${contactDataQuery}
   }
 `;
