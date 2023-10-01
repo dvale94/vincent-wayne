@@ -32,12 +32,7 @@ const Hero = ({ data, socialData }) => {
         <div className="st-height-b80 st-height-lg-b80"></div>
         <div className="container">
           <div className="st-hero-text">
-            <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-              {subTitle}
-            </h3>
-            <h1 data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-              {parser(title)}
-            </h1>
+            <img style={{width: 400}} src='images/nameLogo.png'/>
             <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
               {designation}
             </h2>

@@ -32,9 +32,9 @@ const About = ({ data }) => {
                       </li>
                     ))}
                   </ul>
-                  <div className="st-text-block-btn">
+                  {/* <div className="st-text-block-btn">
                     <a className='st-btn st-style1 st-color1' href={cvPdf} download>Download CV</a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
