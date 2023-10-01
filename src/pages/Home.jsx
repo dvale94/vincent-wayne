@@ -16,10 +16,10 @@ const Home = ({ data }) => {
       <Hero data={data.heroData} socialData={data.socialData} />
       <About data={data.aboutData} data-aos="fade-right" />
       <PortfolioSection data={data.portfolioData} data-aos="fade-right" />
-      <Iconbox data={data.servicesData} data-aos="fade-right" />
       {/* <Skill data={skillData} data-aos="fade-right" /> */}
       {/* <Resume data={resumeData} /> */}
       <ReviewSection data={data.reviewData} data-aos="fade-right" />
+      <Iconbox data={data.servicesData} data-aos="fade-right" />
       {/* <BlogSection data={blogData} data-aos="fade-right" /> */}
       <Contact data={data.contactData} socialData={data.socialData} data-aos="fade-right" />
     </>
