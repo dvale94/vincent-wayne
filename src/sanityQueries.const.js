@@ -50,10 +50,7 @@ const reviewDataQuery = `
   'reviewData':
     *[_type == 'reviews']
       {
-        title,
-        designation,
-        text,
-        'imgLink': imgLink.asset -> url,
+        'videoLink': video.asset -> url,
       }
 `;
 
